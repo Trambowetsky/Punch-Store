@@ -1,0 +1,66 @@
+﻿@using WebUI.Models
+@model ProductsListViewModel
+
+@{
+    ViewBag.Title = "Товари";
+}
+<div class="row mb-2 pt-3">
+    @foreach (var product in Model.Products)
+    {
+
+        @Html.Partial("_SportsProductSummary", product)
+    }
+    @if (Model.Products.Count() == 0)
+    {
+        <div class="container">
+            <div class="row">
+                <div class="container" style="padding-bottom:200px;">
+
+                </div>
+                <div class="col-lg">
+                    <div class="h2 text-center mt-4">Наразі тут нічого нема!</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg d-flex justify-content-center">
+                    @Html.ActionLink("Переглянути список усіх товарів", "/List", null, new
+       {
+                   @class = "btn btn-outline-primary d-flex justify-content-center"
+       })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@if (Url.Action() == "/Products/Favourites" && Model.Products.Count() != 0)
+{
+    <hr class="featurette-divider m-3">
+    <div class="row">
+        <div class="col-lg"><div class="h3 text-center">Не знайшли того, що шукали?</div></div>
+    </div>
+    <div class="row">
+        <div class="col-lg d-flex justify-content-center">
+            @Html.ActionLink("Переглянути список усіх товарів", "/List", null, new
+       {
+           @class = "btn btn-outline-primary"
+       })
+        </div>
+    </div>
+}
+else if (Url.Action() == "/Products/Search")
+{
+}
+else
+{
+    <div class="container d-lg-flex justify-content-end d-none">
+        <div class="btn-group">
+            @Html.PageLinks(Model.PagInfo, x => Url.Action("List", new { page = x, category = Model.CurrentCategory }))
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center d-lg-none">
+        <div class="btn-group">
+            @Html.PageLinks(Model.PagInfo, x => Url.Action("List", new { page = x, category = Model.CurrentCategory }))
+        </div>
+    </div>
+}
+

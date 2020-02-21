@@ -1,0 +1,133 @@
+﻿@using Domain.Concrete
+@model Domain.Entities.SportsProduct
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+@{
+    ViewBag.Title = "Перегляд товару";
+}
+<br />
+
+<div class="container">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h3 class="jumbotron-heading">@Model.ProductName</h3>
+        </div>
+    </section>
+    <div class="row pl-5 d-lg-block d-none"><a href="/"><i class="fas fa-home"></i> Головна</a>  → <a href="/Products/Categories">Категорії</a> → <a href="/@Model.PartOfBody">@CypherClass.categories[Model.PartOfBody]</a> → @Model.ProductName</div>
+    <div class="row d-flex d-lg-none justify-content-center"><a href="/"><i class="fas fa-home"></i> Головна</a> → <a href="/Products/Categories">Категорії</a> → @CypherClass.categories[Model.PartOfBody]</div>
+    <div class="row pt-3">
+        <div class="col-lg-4 d-lg-block d-none">
+            <center>
+                <a class="img_link" href="@Url.Action("GetImage", "Products", new { Model.ProductID, pictureNumber = 1 })" data-lightbox="@Model.ProductID" data-title="@Model.ProductName" style="max-height:300px;">
+                    <img class="img-thumbnail" width="300" height="300"
+                         src="@Url.Action("GetImage", "Products",
+                new { Model.ProductID, pictureNumber = 1})" />
+                </a>
+            </center>
+            <div class="row">
+                <div class="col-lg d-none d-lg-flex justify-content-center">
+                    @if (Model.ImageData_2 != null && Model.ImageMimeType_2 != null)
+                    {
+                        <a class="img_link" style="max-height:75px;" href="@Url.Action("GetImage", "Products", new { Model.ProductID, pictureNumber = 2 })" data-lightbox="@Model.ProductID" data-title="@Model.ProductName">
+                            <img class="img-thumbnail" width="75" height="75"
+                                 src="@Url.Action("GetImage", "Products",
+           new { Model.ProductID, pictureNumber = 2 })" />
+                        </a>
+                    }
+                    @if (Model.ImageData_3 != null && Model.ImageMimeType_3 != null)
+                    {
+                        <a class="img_link" style="max-height:75px;" href="@Url.Action("GetImage", "Products", new { Model.ProductID, pictureNumber = 3 })" data-lightbox="@Model.ProductID" data-title="@Model.ProductName">
+                            <img class="img-thumbnail" width="75" height="75"
+                                 src="@Url.Action("GetImage", "Products",
+           new { Model.ProductID, pictureNumber = 3 })" />
+                        </a>
+                    }
+                    @if (Model.ImageData_4 != null && Model.ImageMimeType_4 != null)
+                    {
+                        <a class="img_link" style="max-height:75px;" href="@Url.Action("GetImage", "Products", new { Model.ProductID, pictureNumber = 4 })" data-lightbox="@Model.ProductID" data-title="@Model.ProductName">
+                            <img class="img-thumbnail" width="75" height="75"
+                                 src="@Url.Action("GetImage", "Products",
+           new { Model.ProductID, pictureNumber = 4 })" />
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 d-flex d-lg-none justify-content-center">
+            <a class="img_link" href="@Url.Action("GetImage", "Products", new { Model.ProductID, pictureNumber = 1 })" data-lightbox="mobile-pic" data-title="@Model.ProductName">
+                <img class="img-thumbnail" width="300" height="300"
+                     src="@Url.Action("GetImage", "Products",
+                new { Model.ProductID, pictureNumber = 1})" />
+            </a>
+        </div>
+        <div class="col d-flex d-lg-none justify-content-center">
+            @if (Model.ImageData_2 != null && Model.ImageMimeType_2 != null)
+            {
+                <a class="img_link" href="@Url.Action("GetImage", "Products", new { Model.ProductID, pictureNumber = 2 })" data-lightbox="mobile-pic" data-title="@Model.ProductName">
+                    <img class="img-thumbnail" width="75" height="75"
+                         src="@Url.Action("GetImage", "Products",
+           new { Model.ProductID, pictureNumber = 2 })" />
+                </a>
+            }
+            @if (Model.ImageData_3 != null && Model.ImageMimeType_3 != null)
+            {
+                <a class="img_link" href="@Url.Action("GetImage", "Products", new { Model.ProductID, pictureNumber = 3 })" data-lightbox="mobile-pic" data-title="@Model.ProductName">
+                    <img class="img-thumbnail" width="75" height="75"
+                         src="@Url.Action("GetImage", "Products",
+           new { Model.ProductID, pictureNumber = 3 })" />
+                </a>
+            }
+            @if (Model.ImageData_4 != null && Model.ImageMimeType_4 != null)
+            {
+                <a class="img_link" href="@Url.Action("GetImage", "Products", new { Model.ProductID, pictureNumber = 4 })" data-lightbox="mobile-pic" data-title="@Model.ProductName">
+                    <img class="img-thumbnail" width="75" height="75"
+                         src="@Url.Action("GetImage", "Products",
+           new { Model.ProductID, pictureNumber = 4 })" />
+                </a>
+            }
+        </div>
+        <div class="col-lg"><p>@Model.LongDesc</p></div>
+        <div class="col-lg">
+            <table class="table table-borderless table-striped table-dark" style="border-radius:15px;">
+                <tbody>
+                    <tr>
+                        <th scope="row">Виробник</th>
+                        <td><p>@Model.Manufacturer</p></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Країна-виробник</th>
+                        <td>
+                            @if (Model.ManufCountry == null)
+                            {
+                                <p>Не вказано</p>
+                            }
+                            else
+                            {
+                                <p>@Model.ManufCountry</p>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Ціна</th>
+                        <td><p>@Model.Price ₴</p></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-lg d-flex justify-content-center">
+                    @using (Ajax.BeginForm("AddToCart", "Cart", new AjaxOptions { UpdateTargetId = "action-sum", Url = Url.Action("AddToCart", "Cart") }))
+                    {
+                        <div class="container-fluid">
+                            @Html.HiddenFor(x => x.ProductID)
+                            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                            <input type="submit" class="btn btn-lg btn-outline-success" value="У кошик" data-toggle="modal" data-target="#modDialog" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Action("AdditionalItems", "Products", new { category = Model.PartOfBody, currentID = Model.ProductID })
+</div>

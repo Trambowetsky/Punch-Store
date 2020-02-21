@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace WebUI.App_Start
+{
+    public class BotStart
+    {
+        public static Models.StoreBot bot = null;
+
+    }
+}

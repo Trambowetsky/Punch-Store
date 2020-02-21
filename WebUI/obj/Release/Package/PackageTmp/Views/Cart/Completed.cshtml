@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Замовлення опрацьовано";
+}
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3"><i class="fas fa-check"></i>Ваше замовлення прийнято!</h1>
+            <center><p>Дякуємо! Наш оператор зателефонує Вам якнайшвидше.</p></center>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-lg d-flex justify-content-center">
+        @Html.ActionLink("На головну", "List", "Products", null, new
+   {
+       @class = "btn btn-lg btn-success"
+   })
+    </div>
+</div>
+
+

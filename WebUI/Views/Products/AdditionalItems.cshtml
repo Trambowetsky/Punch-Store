@@ -1,0 +1,25 @@
+﻿@using WebUI.Models
+@model ProductsListViewModel
+
+@if (Model.Products.Count() != 0)
+{   
+        <div class="row mt-5 additional">
+            <div class="col-xl"><h2>Вас також може зацікавити:</h2></div>
+        </div>
+        <div class="row mt-3 d-flex justify-content-center">
+            @foreach (var product in Model.Products)
+            {
+                <div class="col-xl-3 col-6 card" style="border:0;">
+                    <a class="img_link" href="@Url.Action("GetImage", "Products", new { product.ProductID, pictureNumber = 1})" data-lightbox="@product.ProductID" data-title="@product.ProductName">
+                        <img src="@Url.Action("GetImage", "Products", new { product.ProductID, pictureNumber = 1})" height="251" width="251" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">@product.ProductName</h5>
+                    </div>
+                    <div class="card-btn align-self-center" style="padding-bottom:10px;">
+                        <a href="@Url.Action("ProductView", "Products", new { product.ProductID })" class="btn btn-primary">Перейти до товару</a>
+                    </div>
+                </div>
+            }
+        </div>
+}

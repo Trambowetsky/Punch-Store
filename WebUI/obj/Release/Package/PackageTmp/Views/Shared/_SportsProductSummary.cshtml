@@ -1,0 +1,25 @@
+﻿@model Domain.Entities.SportsProduct
+<head>
+    <link href="~/Content/lightbox.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" crossorigin="anonymous">
+</head>
+<div class="col-lg-3 col-6 col-sm-4 card" style="border:0px;">
+    <a class="img_link" href="@Url.Action("GetImage", "Products", new { Model.ProductID, pictureNumber = 1})" data-lightbox="@Model.ProductID" data-title="@Model.ProductName">
+        <img class="card-img-top" height="251" width="251" src="@Url.Action("GetImage", "Products", new { Model.ProductID, pictureNumber = 1})">
+    </a>
+    <div class="card-body">
+        <a href="@Url.Action("ProductView", "Products", new { Model.ProductID })" style="color:black">
+            <h5 class="card-title">@Model.ProductName</h5>
+            <p class="card-text">@Model.Description</p>
+        </a>
+    </div>
+    <div class="card-btn align-self-center" style="padding-bottom:10px;">
+        @using (Ajax.BeginForm("AddToCart", "Cart", new AjaxOptions { UpdateTargetId = "action-sum", Url = Url.Action("AddToCart", "Cart") }))
+        {
+            @Html.HiddenFor(x => x.ProductID)
+            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+            <input type="submit" id ="buttonmodal"class="btn btn-outline-success" value="@Model.Price ₴" data-toggle="modal" data-target="#modDialog" />
+        }
+    </div>
+</div>

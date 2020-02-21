@@ -1,0 +1,223 @@
+﻿@using Domain.Concrete
+@model IEnumerable<string>
+
+@{
+    bool horizontal = (bool)(ViewContext.RouteData.Values["horizontalNav"] ?? false);
+    string wrapperClass = horizontal ? "btn-group btn-block btn-group-lg btn-group-justified" : null;
+}
+    <div class="wrapper d-block d-lg-none">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <div class="h3 text-center"><a href="/Products/Categories" style="color:aliceblue">Категорії</a></div>
+            </div>
+            @using (Html.BeginForm("Search", "Products"))
+            {
+                <input class="form-control" type="text" placeholder="Пошук" name="searchString" aria-label="Search" style="border-radius:0px">
+            }
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="/Products/Favourites">Товари-фаворити</a>
+                </li>
+                <li>
+                    <a href="#handsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Перчатки</a>
+                    <ul class="collapse list-unstyled" id="handsSubmenu">
+                        <li>
+                            <a href="/Boksersky">Боксерські перчатки</a>
+                        </li>
+                        <li>
+                            <a href="/Snaryadni">Снарядні перчатки</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#defendSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Захисне екіпірування</a>
+                    <ul class="collapse list-unstyled" id="defendSubmenu">
+                        <li>
+                            <a href="/Sholomy">Захист голови</a>
+                        </li>
+                        <li>
+                            <a href="/Kapy">Капи</a>
+                        </li>
+                        <li>
+                            <a href="/Nogi">Захист ніг</a>
+                        </li>
+                        <li>
+                            <a href="/Nakol">Наколінники і налокітники</a>
+                        </li>
+                        <li>
+                            <a href="/Pah">Захист паху</a>
+                        </li>
+                        <li>
+                            <a href="/Inshe">Інший захист</a>
+                        </li>
+                    </ul>
+                    <a href="#trenSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Трен. обладнання</a>
+                    <ul class="collapse list-unstyled" id="trenSubmenu">
+                        <li>
+                            <a href="/Lapy">Лапи і пади</a>
+                        </li>
+                        <li>
+                            <a href="/Trenuv">Тренерське обладнання</a>
+                        </li>
+                    </ul>
+                    <a href="#aksSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Тренувальні аксесуари</a>
+                    <ul class="collapse list-unstyled" id="aksSubmenu">
+                        <li>
+                            <a href="/Binty">Бінти</a>
+                        </li>
+                        <li>
+                            <a href="/Gel">Гелеві бінти</a>
+                        </li>
+                        <li>
+                            <a href="/Masks">Маски для тренування</a>
+                        </li>
+                    </ul>
+                    <a href="#clothSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Одяг та інше</a>
+                    <ul class="collapse list-unstyled" id="clothSubmenu">
+                        <li>
+                            <a href="/Odyag">Футболки і шорти</a>
+                        </li>
+                        <li>
+                            <a href="/Bokserky">Боксерки</a>
+                        </li>
+                        <li>
+                            <a href="/Sumky">Сумки</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+<div class="wrapper d-none d-lg-block" id="aside1">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <div class="h3 text-center text-white"><a href="/Products/Categories" style="color:aliceblue">Категорії</a></div>
+        </div>
+            @using (Html.BeginForm("Search", "Products"))
+            {
+                <input class="form-control" type="text" placeholder="Пошук" name="searchString" aria-label="Search" style="border-radius:0px">
+            }
+    <ul class="list-unstyled components">
+        <li>
+            <a href="/Products/Favourites">Товари-фаворити</a>
+        </li>
+        <li>
+            <a href="#handsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Перчатки</a>
+            <ul class="collapse list-unstyled" id="handsSubmenu">
+                <li>
+                    <a href="/Boksersky">Боксерські перчатки</a>
+                </li>
+                <li>
+                    <a href="/Snaryadni">Снарядні перчатки</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#defendSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Захисне екіпірування</a>
+            <ul class="collapse list-unstyled" id="defendSubmenu">
+                <li>
+                    <a href="/Sholomy">Захист голови</a>
+                </li>
+                <li>
+                    <a href="/Kapy">Капи</a>
+                </li>
+                <li>
+                    <a href="/Nogi">Захист ніг</a>
+                </li>
+                <li>
+                    <a href="/Nakol">Наколінники і налокітники</a>
+                </li>
+                <li>
+                    <a href="/Pah">Захист паху</a>
+                </li>
+                <li>
+                    <a href="/Inshe">Інший захист</a>
+                </li>
+            </ul>
+            <a href="#trenSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Трен. обладнання</a>
+            <ul class="collapse list-unstyled" id="trenSubmenu">
+                <li>
+                    <a href="/Lapy">Лапи і пади</a>
+                </li>
+                <li>
+                    <a href="/Trenuv">Тренерське обладнання</a>
+                </li>
+            </ul>
+            <a href="#aksSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Тренувальні аксесуари</a>
+            <ul class="collapse list-unstyled" id="aksSubmenu">
+                <li>
+                    <a href="/Binty">Бінти</a>
+                </li>
+                <li>
+                    <a href="/Gel">Гелеві бінти</a>
+                </li>
+                <li>
+                    <a href="/Masks">Маски для тренування</a>
+                </li>
+            </ul>
+            <a href="#clothSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Одяг та інше</a>
+            <ul class="collapse list-unstyled" id="clothSubmenu">
+                <li>
+                    <a href="/Odyag">Футболки і шорти</a>
+                </li>
+                <li>
+                    <a href="/Bokserky">Боксерки</a>
+                </li>
+                <li>
+                    <a href="/Sumky">Сумки</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    </nav>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+    });
+</script>
+<style>
+    .sticky {
+        position: fixed;
+        top: 56px; /* если ноль заменить на число (и в скрипте тоже), то блок будет прилипать до того, как верхний край окна браузера дойдёт до верхнего края элемента. Может быть отрицательным числом. Применим, например, при фиксированном сверху меню */
+        z-index: 101;
+    }
+</style>
+<script type="text/javascript">
+    (function () {  // анонимная функция (function(){ })(), чтобы переменные "a" и "b" не стали глобальными
+        var a = document.querySelector('#aside1'), b = null;  // селектор блока, который нужно закрепить
+        window.addEventListener('scroll', Ascroll, false);
+        document.body.addEventListener('scroll', Ascroll, false);  // если у html и body высота равна 100%
+        function Ascroll() {
+            if (b == null) {  // добавить потомка-обёртку, чтобы убрать зависимость с соседями
+                var Sa = getComputedStyle(a, ''), s = '';
+                for (var i = 56; i < Sa.length; i++) {  // перечислить стили CSS, которые нужно скопировать с родителя
+                    if (Sa[i].indexOf('overflow') == 0 || Sa[i].indexOf('padding') == 0 || Sa[i].indexOf('border') == 0 || Sa[i].indexOf('outline') == 0 || Sa[i].indexOf('box-shadow') == 0 || Sa[i].indexOf('background') == 0) {
+                        s += Sa[i] + ': ' + Sa.getPropertyValue(Sa[i]) + '; '
+                    }
+                }
+                b = document.createElement('div');  // создать потомка
+                b.style.cssText = s + ' box-sizing: border-box; width: ' + a.offsetWidth + 'px;';
+                a.insertBefore(b, a.firstChild);  // поместить потомка в цепляющийся блок первым
+                var l = a.childNodes.length;
+                for (var i = 1; i < l; i++) {  // переместить во вновь созданного потомка всех остальных потомков (итого: создан потомок-обёртка, внутри которого по прежнему работают скрипты)
+                    b.appendChild(a.childNodes[1]);
+                }
+                a.style.height = b.getBoundingClientRect().height + 'px';  // если под скользящим элементом есть другие блоки, можно своё значение
+                a.style.padding = '0';
+                a.style.border = '0';  // если элементу присвоен padding или border
+            }
+            if (a.getBoundingClientRect().top <= 56) { // elem.getBoundingClientRect() возвращает в px координаты элемента относительно верхнего левого угла области просмотра окна браузера
+                b.className = 'sticky';
+            } else {
+                b.className = '';
+            }
+            window.addEventListener('resize', function () {
+                a.children[0].style.width = getComputedStyle(a, '').width
+            }, false);  // если изменить размер окна браузера, измениться ширина элемента
+        }
+    })()
+</script>

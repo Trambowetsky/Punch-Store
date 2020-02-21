@@ -1,0 +1,162 @@
+﻿@using Domain.Concrete;
+@model Domain.Entities.SportsProduct
+@{
+    ViewBag.Title = "Адмін панель: редагування товару";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Редагування товару «@Model.ProductName»</h3>
+    </div>
+
+    @using (Html.BeginForm("Edit", "Admin",
+        FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+<div class="panel-body">
+    @Html.HiddenFor(m => m.ProductID)
+    @foreach (var property in ViewData.ModelMetadata.Properties)
+    {
+        switch (property.PropertyName)
+        {
+            case "ProductID":
+            case "ImageData":
+            case "ImageMimeType":
+            case "ImageData_2":
+            case "ImageMimeType_2":
+            case "ImageData_3":
+            case "ImageMimeType_3":
+            case "PartOfBody":
+            case "ImageData_4":
+            case "ImageMimeType_4":
+            case "IsFavourite":
+                break;
+            default:
+                <div class="form-group">
+                    <label>@(property.DisplayName ?? property.PropertyName)</label>
+                    @if (property.PropertyName == "LongDesc")
+                    {
+                        @Html.TextArea(property.PropertyName, null,
+                            new { @class = "form-control", rows = 5 })
+                    }
+                    else
+                    {
+                        @Html.TextBox(property.PropertyName, null,
+                            new { @class = "form-control" })
+                    }
+                    @Html.ValidationMessage(property.PropertyName)
+                </div>
+                break;
+                    }
+                    }
+                <div class="form-group">
+                    <label>
+                        @Html.EditorFor(x => Model.IsFavourite)
+                        Товар-фаворит
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="text-decoration-none">Категорія товару</div>
+                    @Html.DropDownListFor(n => n.PartOfBody, new SelectList(CypherClass.categories, "Key", "Value"), "Вкажіть категорію")
+                </div>
+                <div class="form-group">
+                    <div style="position:relative;">
+                        <label>Зображення</label>
+                        <a class='btn' id="pic" href='javascript:;'>
+                            Оберіть файл...
+                            <input type="file" name="Image" size="40"
+                                   style="position:absolute;z-index:2;top:0;
+                                left:0;filter: alpha(opacity=0); opacity:0;
+                                background-color:transparent;color:transparent;"
+                                   onchange='$("#upload-file-info").html($(this).val());'>
+                        </a>
+                            
+                        <span class='label label-info' id="upload-file-info"></span>
+                    </div>
+                    @if (Model.ImageData == null)
+                    {
+                        <div class="form-control-static">Нема зображення</div>
+                    }
+                    else
+                    {
+                        <img class="img-thumbnail" width="150" height="150"
+                             src="@Url.Action("GetImage", "Products",
+                        new { Model.ProductID, pictureNumber = 1 })" />
+                    }
+                    <div style="position:relative;">
+                        <label>Зображення</label>
+                        <a class='btn' href='javascript:;'>
+                            Оберіть файл...
+                            <input type="file" name="Image_2" size="40"
+                                   style="position:absolute;z-index:2;top:0;
+                                left:0;filter: alpha(opacity=0); opacity:0;
+                                background-color:transparent;color:transparent;"
+                                   onchange='$("#upload-file-info").html($(this).val());'>
+                        </a>
+                        <span class='label label-info' id="upload-file-info"></span>
+                    </div>
+                    @if (Model.ImageData_2 == null)
+                    {
+                        <div class="form-control-static">Нема зображення</div>
+                    }
+                    else
+                    {
+                        <img class="img-thumbnail" width="150" height="150"
+                             src="@Url.Action("GetImage", "Products",
+                        new { Model.ProductID, pictureNumber = 2 })" />
+                    }
+                    <div style="position:relative;">
+                        <label>Зображення</label>
+                        <a class='btn' href='javascript:;'>
+                            Оберіть файл...
+                            <input type="file" name="Image_3" size="40"
+                                   style="position:absolute;z-index:2;top:0;
+                                left:0;filter: alpha(opacity=0); opacity:0;
+                                background-color:transparent;color:transparent;"
+                                   onchange='$("#upload-file-info").html($(this).val());'>
+                        </a>
+                        <span class='label label-info' id="upload-file-info"></span>
+                    </div>
+                    @if (Model.ImageData_3 == null)
+                    {
+                        <div class="form-control-static">Нема зображення</div>
+                    }
+                    else
+                    {
+                        <img class="img-thumbnail" width="150" height="150"
+                             src="@Url.Action("GetImage", "Products",
+                        new { Model.ProductID, pictureNumber = 3 })" />
+                    }
+                    <div style="position:relative;">
+                        <label>Зображення</label>
+                        <a class='btn' href='javascript:;'>
+                            Оберіть файл...
+                            <input type="file" name="Image_4" size="40"
+                                   style="position:absolute;z-index:2;top:0;
+                                left:0;filter: alpha(opacity=0); opacity:0;
+                                background-color:transparent;color:transparent;"
+                                   onchange='$("#upload-file-info").html($(this).val());'>
+                        </a>
+                        <span class='label label-info' id="upload-file-info"></span>
+                    </div>
+                    @if (Model.ImageData_4 == null)
+                    {
+                        <div class="form-control-static">Нема зображення</div>
+                    }
+                    else
+                    {
+                        <img class="img-thumbnail" width="150" height="150"
+                             src="@Url.Action("GetImage", "Products",
+                        new { Model.ProductID, pictureNumber = 4 })" />
+                    }
+                </div>
+            </div>
+        <div class="panel-footer">
+            <input type="submit" value="Зберегти" class="btn btn-primary" />
+            @Html.ActionLink("Відмінити зміни і повернутися до списку", "Index", null, new
+            {
+                @class = "btn btn-success"
+            })
+        </div>
+    }
+</div>

@@ -1,0 +1,37 @@
+﻿@model Domain.Entities.ShippingDetails
+
+@{
+    ViewBag.Title = "Punch-Store: форма замовлення";
+}
+    <div class="container mt-3">
+        <h2 class="text-center">Оформити замовлення</h2>
+        <p class="text-center">Будь ласка, введіть Ваші контактні дані</p>
+        <hr class="featurette-divider" style="margin:0px;">
+
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary();
+            <h3>Дані</h3>
+            <div class="form-group">
+                <label>Ваше ім'я:</label>
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            </div>
+
+
+            foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+                if (property.PropertyName != "Name")
+                {
+                    <div class="form-group">
+                        <label> @(property.DisplayName ?? property.PropertyName)</label>
+                        @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                    </div>
+                }
+            }
+
+            <div class="text-center">
+                <a href="https://novaposhta.ua/office" style="color:darkblue; text-decoration:underline">Дізнатися номер найближчого відділення офісу Нової Пошти можна тут</a><br />
+                <input class="btn btn-primary mt-2" type="submit" value="Опрацювати замовлення" />
+            </div>
+        }
+    </div>
